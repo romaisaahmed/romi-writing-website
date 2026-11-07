@@ -14,9 +14,6 @@
     --text-2xl--line-height: calc(2 / 1.5);
     --text-5xl: 3rem;
     --text-5xl--line-height: 1;
-    --font-weight-bold: 700;
-    --radius-md: 0.375rem;
-    --radius-lg: 0.5rem;
     --radius-xl: 0.75rem;
     --default-font-family: var(--font-sans);
     --default-mono-font-family: var(--font-mono);
@@ -348,88 +345,6 @@
       }
     }
   }
-  .list {
-    @layer daisyui.l1.l2.l3 {
-      display: flex;
-      flex-direction: column;
-      font-size: 0.875rem;
-    }
-    & .list-row {
-      @layer daisyui.l1.l2.l3 {
-        --list-grid-cols: minmax(0, auto) 1fr;
-        position: relative;
-        display: grid;
-        grid-auto-flow: column;
-        gap: calc(0.25rem * 4);
-        border-radius: var(--radius-box);
-        padding: calc(0.25rem * 4);
-        word-break: break-word;
-        grid-template-columns: var(--list-grid-cols);
-      }
-    }
-    :is(& > :not(:last-child).list-row, .list > :not(:last-child)  .list-row):after {
-      @layer daisyui.l1.l2.l3 {
-        content: "";
-        border-bottom: var(--border) solid;
-        inset-inline: var(--radius-box);
-        position: absolute;
-        bottom: 0px;
-        border-color: var(--color-base-content);
-        @supports (color: color-mix(in lab, red, red)) {
-          border-color: color-mix(in oklab, var(--color-base-content) 5%, transparent);
-        }
-      }
-    }
-    :is(.list > :not(:last-child).list-row, & > :not(:last-child)  .list-row):after {
-      @layer daisyui.l1.l2.l3 {
-        content: "";
-        border-bottom: var(--border) solid;
-        inset-inline: var(--radius-box);
-        position: absolute;
-        bottom: 0px;
-        border-color: var(--color-base-content);
-        @supports (color: color-mix(in lab, red, red)) {
-          border-color: color-mix(in oklab, var(--color-base-content) 5%, transparent);
-        }
-      }
-    }
-    & .list-row:has(.list-col-grow:nth-child(1)) {
-      @layer daisyui.l1.l2 {
-        --list-grid-cols: 1fr;
-      }
-    }
-    & .list-row:has(.list-col-grow:nth-child(2)) {
-      @layer daisyui.l1.l2 {
-        --list-grid-cols: minmax(0, auto) 1fr;
-      }
-    }
-    & .list-row:has(.list-col-grow:nth-child(3)) {
-      @layer daisyui.l1.l2 {
-        --list-grid-cols: minmax(0, auto) minmax(0, auto) 1fr;
-      }
-    }
-    & .list-row:has(.list-col-grow:nth-child(4)) {
-      @layer daisyui.l1.l2 {
-        --list-grid-cols: minmax(0, auto) minmax(0, auto) minmax(0, auto) 1fr;
-      }
-    }
-    & .list-row:has(.list-col-grow:nth-child(5)) {
-      @layer daisyui.l1.l2 {
-        --list-grid-cols: minmax(0, auto) minmax(0, auto) minmax(0, auto) minmax(0, auto) 1fr;
-      }
-    }
-    & .list-row:has(.list-col-grow:nth-child(6)) {
-      @layer daisyui.l1.l2 {
-        --list-grid-cols: minmax(0, auto) minmax(0, auto) minmax(0, auto) minmax(0, auto)
-          minmax(0, auto) 1fr;
-      }
-    }
-    & .list-row > * {
-      @layer daisyui.l1.l2 {
-        grid-row-start: 1;
-      }
-    }
-  }
   .aura {
     @layer daisyui.l1.l2.l3 {
       position: relative;
@@ -671,12 +586,6 @@
   .z-50 {
     z-index: 50;
   }
-  .m-4 {
-    margin: calc(var(--spacing) * 4);
-  }
-  .m-8 {
-    margin: calc(var(--spacing) * 8);
-  }
   .mr-2 {
     margin-right: calc(var(--spacing) * 2);
   }
@@ -741,6 +650,14 @@
       }
     }
   }
+  .card-actions {
+    @layer daisyui.l1.l2.l3 {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: flex-start;
+      gap: calc(0.25rem * 2);
+    }
+  }
   .card-title {
     @layer daisyui.l1.l2.l3 {
       display: flex;
@@ -796,9 +713,6 @@
   .h-screen {
     height: 100vh;
   }
-  .w-1 {
-    width: calc(var(--spacing) * 1);
-  }
   .w-1\/4 {
     width: calc(1/4 * 100%);
   }
@@ -810,9 +724,6 @@
   }
   .w-3\/5 {
     width: calc(3/5 * 100%);
-  }
-  .w-96 {
-    width: calc(var(--spacing) * 96);
   }
   .w-120 {
     width: calc(var(--spacing) * 120);
@@ -848,17 +759,14 @@
   .justify-center {
     justify-content: center;
   }
+  .justify-end {
+    justify-content: flex-end;
+  }
   .justify-items-center {
     justify-items: center;
   }
   .rounded {
     border-radius: 0.25rem;
-  }
-  .rounded-lg {
-    border-radius: var(--radius-lg);
-  }
-  .rounded-md {
-    border-radius: var(--radius-md);
   }
   .rounded-xl {
     border-radius: var(--radius-xl);
@@ -897,20 +805,28 @@
   .bg-\[url\(\'\/assets\/overpass\.jpg\'\)\] {
     background-image: url('/assets/overpass.jpg');
   }
-  .bg-\[url\(\'\/assets\/sign\.jpg\'\)\] {
-    background-image: url('/assets/sign.jpg');
-  }
   .bg-\[url\(\'\/assets\/van\.jpg\'\)\] {
     background-image: url('/assets/van.jpg');
+  }
+  .mask-b-from-20\% {
+    mask-image: var(--tw-mask-linear), var(--tw-mask-radial), var(--tw-mask-conic);
+    mask-composite: intersect;
+    --tw-mask-linear: var(--tw-mask-left), var(--tw-mask-right), var(--tw-mask-bottom), var(--tw-mask-top);
+    --tw-mask-bottom: linear-gradient(to bottom, var(--tw-mask-bottom-from-color) var(--tw-mask-bottom-from-position), var(--tw-mask-bottom-to-color) var(--tw-mask-bottom-to-position));
+    --tw-mask-bottom-from-position: 20%;
+  }
+  .mask-b-to-80\% {
+    mask-image: var(--tw-mask-linear), var(--tw-mask-radial), var(--tw-mask-conic);
+    mask-composite: intersect;
+    --tw-mask-linear: var(--tw-mask-left), var(--tw-mask-right), var(--tw-mask-bottom), var(--tw-mask-top);
+    --tw-mask-bottom: linear-gradient(to bottom, var(--tw-mask-bottom-from-color) var(--tw-mask-bottom-from-position), var(--tw-mask-bottom-to-color) var(--tw-mask-bottom-to-position));
+    --tw-mask-bottom-to-position: 80%;
   }
   .bg-cover {
     background-size: cover;
   }
   .bg-center {
     background-position: center;
-  }
-  .p-8 {
-    padding: calc(var(--spacing) * 8);
   }
   .py-8 {
     padding-block: calc(var(--spacing) * 8);
@@ -947,10 +863,6 @@
   .text-xl {
     font-size: var(--text-xl);
     line-height: var(--tw-leading, var(--text-xl--line-height));
-  }
-  .font-bold {
-    --tw-font-weight: var(--font-weight-bold);
-    font-weight: var(--font-weight-bold);
   }
   .text-base-100 {
     color: var(--color-base-100);
@@ -1210,9 +1122,60 @@
     opacity: 0;
   }
 }
-@property --tw-font-weight {
+@property --tw-mask-linear {
   syntax: "*";
   inherits: false;
+  initial-value: linear-gradient(#fff, #fff);
+}
+@property --tw-mask-radial {
+  syntax: "*";
+  inherits: false;
+  initial-value: linear-gradient(#fff, #fff);
+}
+@property --tw-mask-conic {
+  syntax: "*";
+  inherits: false;
+  initial-value: linear-gradient(#fff, #fff);
+}
+@property --tw-mask-left {
+  syntax: "*";
+  inherits: false;
+  initial-value: linear-gradient(#fff, #fff);
+}
+@property --tw-mask-right {
+  syntax: "*";
+  inherits: false;
+  initial-value: linear-gradient(#fff, #fff);
+}
+@property --tw-mask-bottom {
+  syntax: "*";
+  inherits: false;
+  initial-value: linear-gradient(#fff, #fff);
+}
+@property --tw-mask-top {
+  syntax: "*";
+  inherits: false;
+  initial-value: linear-gradient(#fff, #fff);
+}
+@property --tw-mask-bottom-from-position {
+  syntax: "*";
+  inherits: false;
+  initial-value: 0%;
+}
+@property --tw-mask-bottom-to-position {
+  syntax: "*";
+  inherits: false;
+  initial-value: 100%;
+}
+@property --tw-mask-bottom-from-color {
+  syntax: "*";
+  inherits: false;
+  initial-value: black;
+}
+@property --tw-mask-bottom-to-color {
+  syntax: "*";
+  inherits: false;
+  initial-value: transparent;
 }
 @property --tw-shadow {
   syntax: "*";
@@ -1282,7 +1245,17 @@
 @layer properties {
   @supports ((-webkit-hyphens: none) and (not (margin-trim: inline))) or ((-moz-orient: inline) and (not (color:rgb(from red r g b)))) {
     *, ::before, ::after, ::backdrop {
-      --tw-font-weight: initial;
+      --tw-mask-linear: linear-gradient(#fff, #fff);
+      --tw-mask-radial: linear-gradient(#fff, #fff);
+      --tw-mask-conic: linear-gradient(#fff, #fff);
+      --tw-mask-left: linear-gradient(#fff, #fff);
+      --tw-mask-right: linear-gradient(#fff, #fff);
+      --tw-mask-bottom: linear-gradient(#fff, #fff);
+      --tw-mask-top: linear-gradient(#fff, #fff);
+      --tw-mask-bottom-from-position: 0%;
+      --tw-mask-bottom-to-position: 100%;
+      --tw-mask-bottom-from-color: black;
+      --tw-mask-bottom-to-color: transparent;
       --tw-shadow: 0 0 #0000;
       --tw-shadow-color: initial;
       --tw-shadow-alpha: 100%;
